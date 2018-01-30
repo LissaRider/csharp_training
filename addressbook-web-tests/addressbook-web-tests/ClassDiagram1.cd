@@ -1,24 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="addressbook_web_tests.Figure">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+  <Class Name="WebAddressbookTests.TestBase">
+    <Position X="3.75" Y="0.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Figure.cs</FileName>
+      <HashCode>AAJAAAQAIABEAABAAAEAAALAAAAJMAAAAAAQABBAAKA=</HashCode>
+      <FileName>tests\TestBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="addressbook_web_tests.Circle">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+  <Class Name="WebAddressbookTests.ContactCreationTests">
+    <Position X="8.75" Y="5.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Circle.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>tests\ContactCreationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="addressbook_web_tests.Square">
-    <Position X="4.5" Y="2.75" Width="1.5" />
+  <Class Name="WebAddressbookTests.GroupCreationTests">
+    <Position X="0.5" Y="5.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Square.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupCreationTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAddressbookTests.GroupRemovalTests">
+    <Position X="4.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupRemovalTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
