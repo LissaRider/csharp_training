@@ -17,6 +17,6 @@ namespace WebAddressbookTests
         {
             this.manager = manager;
             driver = manager.Driver;
-        }
+        }        
     }
 }

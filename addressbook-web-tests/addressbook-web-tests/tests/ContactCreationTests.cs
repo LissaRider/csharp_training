@@ -15,7 +15,7 @@ namespace WebAddressbookTests
             ContactData contact = new ContactData("Vasilisa", "Smirnova");
             contact.Middlename = "Sergeevna";
             contact.Nickname = "Lissa Rider";
-            contact.Photo = "C:\\Users\vsmirnova\\Desktop\\fb36mdIniM8.jpg";
+            //contact.Photo = "C:\\Users\vsmirnova\\Desktop\\fb36mdIniM8.jpg";
             contact.Title = "QA Engineer";
             contact.Company = "ABS";
             contact.Address = "Moscow, Lokomotivny Proezd";
@@ -33,7 +33,7 @@ namespace WebAddressbookTests
             contact.Aday = "3";
             contact.Amonth = "January";
             contact.Ayear = "2036";
-            contact.New_group = "[none]";
+            //contact.New_group = "[none]";
             contact.Address2 = "Moscow, Chertanovskay street";
             contact.Phone2 = "8965444-444-4";
             contact.Notes = "Smth about me";

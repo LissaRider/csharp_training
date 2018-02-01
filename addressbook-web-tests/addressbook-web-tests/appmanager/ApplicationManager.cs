@@ -27,6 +27,7 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver(options);
             baseURL = "http://localhost";
 
+
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
