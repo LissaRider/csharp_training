@@ -29,6 +29,7 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
@@ -56,18 +57,28 @@ namespace WebAddressbookTests
 
         public GroupHelper FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
             return this;
         }
 
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
+        }
+
+        // Group modification methods
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
 
@@ -91,18 +102,19 @@ namespace WebAddressbookTests
             return this;
         }
 
-        // Group modification methods
-        public GroupHelper SubmitGroupModification()
+        // Verification
+        public void VerifyGroupPresence()
         {
-            driver.FindElement(By.Name("update")).Click();
-            return this;
-        }
+            if (IsElementPresent(By.XPath("//span[@class='group']")))
+            {
+                return;
+            }
 
-        public GroupHelper InitGroupModification()
-        {
-            driver.FindElement(By.Name("edit")).Click();
-            return this;
-        }
+            GroupData group = new GroupData("Employees");
+            group.Header = "Employees";
+            group.Footer = "ABS";
 
+            Create(group);
+        }
     }
 }

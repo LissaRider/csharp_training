@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : TestBase
+    public class ContactModificationTests : AuthTestBase
     {
         [Test]
         public void ContactModificationTest()
@@ -39,6 +39,7 @@ namespace WebAddressbookTests
             NewData.Phone2 = "8(965)444-444-4";
             NewData.Notes = "Notes";
 
+            app.Contacts.VerifyContactPresence();
             app.Contacts.Modify(1, 1, NewData);
         }
     }
