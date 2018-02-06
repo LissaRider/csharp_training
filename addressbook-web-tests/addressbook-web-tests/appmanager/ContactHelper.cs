@@ -24,13 +24,13 @@ namespace WebAddressbookTests
             ReturnToHomePage();
             return this;
         }
-        public ContactHelper Modify(int v1, int v2, ContactData newData)
+        public ContactHelper Modify(int v1, ContactData newData)
         {
             manager.Navigator.GoToHomePage();
 
             InitContactModification(v1);
             FillContactForm(newData);
-            SubmitContactModification(v2);
+            SubmitContactModification();
             ReturnToHomePage();
             return this;
         }
@@ -117,9 +117,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SubmitContactModification(int index2)
+        public ContactHelper SubmitContactModification()
         {
-            driver.FindElement(By.XPath("(//input[@name='update'])[" + index2 + "]")).Click();
+            driver.FindElement(By.Name("update")).Click();
             return this;
         }
 

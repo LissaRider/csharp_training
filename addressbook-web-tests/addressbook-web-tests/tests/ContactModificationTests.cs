@@ -40,7 +40,7 @@ namespace WebAddressbookTests
             NewData.Notes = "Notes";
 
             app.Contacts.VerifyContactPresence();
-            app.Contacts.Modify(1, 1, NewData);
+            app.Contacts.Modify(1, NewData);
         }
     }
 }
