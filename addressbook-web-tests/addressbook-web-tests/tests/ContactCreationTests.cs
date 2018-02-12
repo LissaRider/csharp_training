@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -37,8 +38,13 @@ namespace WebAddressbookTests
             contact.Address2 = "Moscow, Chertanovskay street";
             contact.Phone2 = "8965444-444-4";
             contact.Notes = "Smth about me";
-                        
+
+            List<ContactData> oldContacts = app.Contacts.GetContactsList();
+
             app.Contacts.Create(contact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactsList();
+            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
         }
     }
 }
