@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     public class ContactCreationTests : AuthTestBase
     {
         [Test]
+
         public void ContactCreationTest()
         {
             ContactData contact = new ContactData("Vasilisa", "Smirnova");

@@ -26,6 +26,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+
         public List<GroupData> GetGroupsList()
         {
             List<GroupData> groups = new List<GroupData>();

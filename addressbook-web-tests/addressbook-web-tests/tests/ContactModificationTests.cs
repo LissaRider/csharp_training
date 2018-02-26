@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     public class ContactModificationTests : AuthTestBase
     {
         [Test]
+
         public void ContactModificationTest()
         {
             ContactData NewData = new ContactData("V", "S");

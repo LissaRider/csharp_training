@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     public class GroupRemovalTests : AuthTestBase
     {
         [Test]
+
         public void GroupRemovalTest()
         {
             app.Groups.VerifyGroupPresence();

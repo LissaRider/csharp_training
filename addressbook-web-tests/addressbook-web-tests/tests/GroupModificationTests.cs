@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     public class GroupModificationTests : AuthTestBase
     {
         [Test]
+
         public void GroupModificationTest()
         {
             GroupData NewData = new GroupData("Leadership1");

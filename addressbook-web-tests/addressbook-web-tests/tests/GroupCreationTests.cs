@@ -13,6 +13,7 @@ namespace WebAddressbookTests
 
     {
         [Test]
+
         public void GroupCreationTest()
         {
             GroupData group = new GroupData("Employees");

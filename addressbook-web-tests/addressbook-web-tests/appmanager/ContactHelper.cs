@@ -24,7 +24,6 @@ namespace WebAddressbookTests
             ReturnToHomePage();
             return this;
         }
-
         public List<ContactData> GetContactsList()
         {
             List<ContactData> contacts = new List<ContactData>();
