@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 
 namespace WebAddressbookTests
@@ -44,7 +44,10 @@ namespace WebAddressbookTests
             app.Contacts.Create(contact);
 
             List<ContactData> newContacts = app.Contacts.GetContactsList();
-            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

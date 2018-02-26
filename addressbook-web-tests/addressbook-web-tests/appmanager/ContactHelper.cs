@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
-        
+
         public ContactHelper Create(ContactData contact)
         {
             manager.Navigator.GoToContactCreationPage();
@@ -30,11 +30,10 @@ namespace WebAddressbookTests
             List<ContactData> contacts = new List<ContactData>();
 
             manager.Navigator.GoToHomePage();
-
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=entry]"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.FindElement(By.XPath("//td[3]")).Text, element.FindElement(By.XPath("//td[2]")).Text));
+                contacts.Add(new ContactData(element.FindElement(By.XPath(".//td[3]")).Text, element.FindElement(By.XPath(".//td[2]")).Text));
             }
             return contacts;
         }
@@ -97,12 +96,12 @@ namespace WebAddressbookTests
 
             // Internet
             Type(By.Name("homepage"), contact.Homepage);
-            
+
             // Birthday
             new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
             new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
             Type(By.Name("byear"), contact.Byear);
-            
+
             // Anniversary
             new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Aday);
             new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Amonth);

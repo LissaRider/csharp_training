@@ -46,6 +46,9 @@ namespace WebAddressbookTests
             app.Contacts.Modify(0, NewData);
 
             List<ContactData> newContacts = app.Contacts.GetContactsList();
+            oldContacts[0] = NewData;
+            oldContacts.Sort();
+            newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
         }
     }
