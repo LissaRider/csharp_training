@@ -48,9 +48,7 @@ namespace WebAddressbookTests
             ReturnToHomePage();
             return this;
         }
-
-
-
+        
         public ContactHelper Remove(int v)
         {
             manager.Navigator.GoToHomePage();
