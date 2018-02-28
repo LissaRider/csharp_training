@@ -11,6 +11,13 @@ namespace WebAddressbookTests
     {
         public string allPhones;
         public string allEmails;
+        public string allDetails;
+
+        public ContactData(string firstname, string lastname)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+        }
 
         public string Firstname { get; set; }
 
@@ -19,8 +26,6 @@ namespace WebAddressbookTests
         public string Middlename { get; set; }
 
         public string Nickname { get; set; }
-
-        public string Photo { get; set; }
 
         public string Title { get; set; }
 
@@ -44,20 +49,6 @@ namespace WebAddressbookTests
         
         public string Homepage { get; set; }
 
-        public string Bday { get; set; }
-
-        public string Bmonth { get; set; }
-
-        public string Byear { get; set; }
-
-        public string Aday { get; set; }
-
-        public string Amonth { get; set; }
-
-        public string Ayear { get; set; }
-
-        public string New_group { get; set; }
-
         public string Address2 { get; set; }
 
         public string Phone2 { get; set; }
@@ -76,7 +67,7 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUpEmails(Email) + CleanUpEmails(Email2) + CleanUpEmails(Email3)).Trim();
+                    return (EndStringInsert(Email) + EndStringInsert(Email2) + EndStringInsert(Email3)).Trim();
                 }
             }
             set
@@ -104,29 +95,153 @@ namespace WebAddressbookTests
             }
         }
 
+        public string AllDetails
+        {
+            get
+            {
+                if (allDetails != null)
+                {
+                    return allDetails;
+                }
+                else
+                {
+                    return (EndStringInsert(EndStringInsert(ContactDetailsList(Firstname, Middlename, Lastname, Nickname, Title, Company, Address)))
+                        + EndStringInsert(EndStringInsert(GetTelephoneList(Home, Mobile, Work, Fax)))
+                        + EndStringInsert(EndStringInsert(GetEmailList(Email, Email2, Email3, Homepage)))
+                        + StartStringInsert(Address2)
+                        + EndStringInsert(StartStringInsert(StartStringInsert(StringPhone2(Phone2))))
+                        + StartStringInsert(Notes)).Trim();
+                }
+            }
+            set
+            {
+                allDetails = value;
+            }
+        }
+
         public string CleanUpPhones(string phone)
          {
              if (phone == null || phone == "")
              {
                  return "";
              }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n"; ;
-         }  
-  
-         public string CleanUpEmails(string email)
-         {
-             if (email == null || email == "")
-             {
-                 return "";
-             }
-             return email.Replace(" ", "") + "\r\n";
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
          }
 
-        public ContactData(string firstname, string lastname)
+        // Adding a line break to the string beginning
+        public string StartStringInsert(string line)
         {
-            Firstname = firstname;
-            Lastname = lastname;
+            if (line == null || line == "")
+            {
+                return "";
+            }
+            return "\r\n" + line;
         }
+
+        // Adding a line break to the string end
+        public string EndStringInsert(string line)
+        {
+            if (line == null || line == "")
+            {
+                return "";
+            }
+            return line + "\r\n";
+        }
+
+        // Glue the lines together for fullname as on the details form
+        public string GetFullName(string firstname, string middlename, string lastname)
+        {
+            string form = "";
+
+            if (firstname != null && firstname != "")
+            {
+                form = Firstname + " ";
+            }
+            if (middlename != null && middlename != "")
+            {
+                form = form + Middlename + " ";
+            }
+            if (lastname != null && lastname != "")
+            {
+                form = form + Lastname + " ";
+            }
+            return form.Trim();
+        }
+
+        // Glue the lines together for fullname, job and address info as on the details form
+        public string ContactDetailsList(string firstname, string middlename, string lastname, string nickname, string title, string company, string address)
+        {
+            return EndStringInsert(GetFullName(firstname, middlename, lastname)) + EndStringInsert(nickname) + EndStringInsert(title) + EndStringInsert(company) + EndStringInsert(address).Trim();
+        }
+
+        // Glue the lines together for telephone list as on the details form
+        public string GetTelephoneList(string home, string mobile, string work, string fax)
+        {
+            string form = "";
+
+            if (home != null && home != "")
+            {
+                form = form + "H: " + EndStringInsert(Home);
+            }
+            if (mobile != null && mobile != "")
+            {
+                form = form + "M: " + EndStringInsert(Mobile);
+            }
+            if (work != null && work != "")
+            {
+                form = form + "W: " + EndStringInsert(Work);
+            }
+            if (fax != null && fax != "")
+            {
+                form = form + "F: " + EndStringInsert(Fax);
+            }
+            return form.Trim();
+        }
+
+        // Glue the lines together for email list and web info as on the details form
+        public string GetEmailList(string email, string email2, string email3, string homepage)
+        {
+            string form = "";
+
+            if (email != null && email != "")
+            {
+                form = form + EndStringInsert(email);
+            }
+            if (email2 != null && email2 != "")
+            {
+                form = form + EndStringInsert(email2);
+            }
+            if (email3 != null && email3 != "")
+            {
+                form = form + EndStringInsert(email3);
+            }
+            if (homepage != null && homepage != "")
+            {
+                form = form + EndStringInsert(StringHomePage(homepage));
+            }
+            return form.Trim();
+        }
+
+        // Getting a template for 'homepage' as on the details form
+        public string StringHomePage(string homepage)
+        {
+            if (homepage == null || homepage == "")
+            {
+                return "";
+            }
+            return "Homepage:" + "\r\n" + homepage;
+        }
+
+        // Getting a template for 'phone2' as on the details form
+        public string StringPhone2(string phone2)
+        {
+            if (phone2 == null || phone2 == "")
+            {
+                return "";
+            }
+            return "P: " + Phone2;
+        }
+
 
         public override int GetHashCode()
         {

@@ -17,7 +17,6 @@ namespace WebAddressbookTests
             ContactData newData = new ContactData("V", "S");
             newData.Middlename = "S";
             newData.Nickname = "LissaRider";
-            //NewData.Photo = "C:\\Users\vsmirnova\\Desktop\\fb36mdIniM8.jpg";
             newData.Title = "Tester";
             newData.Company = "ANBR";
             newData.Address = "Moscow, Lokomotivny Proezd, 201";
@@ -28,14 +27,7 @@ namespace WebAddressbookTests
             newData.Email = "lissarider1@gmail.com";
             newData.Email2 = "lisaniel.lisaniel1@gmail.com";
             newData.Email3 = "lisaniel1@mail.ru";
-            newData.Homepage = "https://vk.com/lissa_rider";
-            newData.Bday = "2";
-            newData.Bmonth = "February";
-            newData.Byear = "1984";
-            newData.Aday = "2";
-            newData.Amonth = "February";
-            newData.Ayear = "2034";
-            //newData.New_group = "[none]";
+            newData.Homepage = "vk.com/lissa_rider";
             newData.Address2 = "Moscow, Chertanovskay street, 33";
             newData.Phone2 = "8(965)444-444-4";
             newData.Notes = "Notes";

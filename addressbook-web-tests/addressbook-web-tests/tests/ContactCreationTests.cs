@@ -17,7 +17,6 @@ namespace WebAddressbookTests
             ContactData contact = new ContactData("Vasilisa", "Smirnova");
             contact.Middlename = "Sergeevna";
             contact.Nickname = "Lissa Rider";
-            //contact.Photo = "C:\\Users\vsmirnova\\Desktop\\fb36mdIniM8.jpg";
             contact.Title = "QA Engineer";
             contact.Company = "ABS";
             contact.Address = "Moscow, Lokomotivny Proezd";
@@ -28,14 +27,7 @@ namespace WebAddressbookTests
             contact.Email = "lissarider@gmail.com";
             contact.Email2 = "lisaniel.lisaniel@gmail.com";
             contact.Email3 = "lisanie@mail.ru";
-            contact.Homepage = "https://vk.com/lissarider";
-            contact.Bday = "3";
-            contact.Bmonth = "January";
-            contact.Byear = "1986";
-            contact.Aday = "3";
-            contact.Amonth = "January";
-            contact.Ayear = "2036";
-            //contact.New_group = "[none]";
+            contact.Homepage = "vk.com/lissarider";
             contact.Address2 = "Moscow, Chertanovskay street";
             contact.Phone2 = "8965444-444-4";
             contact.Notes = "Smth about me";

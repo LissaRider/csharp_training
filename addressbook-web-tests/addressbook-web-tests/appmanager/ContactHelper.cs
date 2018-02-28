@@ -37,38 +37,71 @@ namespace WebAddressbookTests
             };
         }
 
+        public ContactData GetContactInformationFromDetailsForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            GoToDetailsForm(index);
+
+            string allDetails = driver.FindElement(By.Id("content")).Text;
+            return new ContactData("", "")
+            {
+                AllDetails = allDetails
+            };
+        }
+
         public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification(0);
+            InitContactModification(index);
 
+            // Contact detais
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
-
+            string nickName = driver.FindElement(By.Name("nickname")).GetAttribute("value");
+            string jobTitle = driver.FindElement(By.Name("title")).GetAttribute("value");
+            string companyName = driver.FindElement(By.Name("company")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).Text;
 
+            // Telephones
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string faxPhone = driver.FindElement(By.Name("fax")).GetAttribute("value");
 
+            // Emails
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
+            // Web
+            string homePage = driver.FindElement(By.Name("homepage")).GetAttribute("value");
+
+            // Secondary
+            string address2 = driver.FindElement(By.Name("address2")).Text;
             string homePhone2 = driver.FindElement(By.Name("phone2")).GetAttribute("value");
+            string notes = driver.FindElement(By.Name("notes")).Text;            
 
             return new ContactData(firstName, lastName)
             {
+                Middlename = middleName,
+                Nickname = nickName,
+                Title = jobTitle,
+                Company = companyName,
                 Address = address,
                 Home = homePhone,
                 Mobile = mobilePhone,
                 Work = workPhone,
+                Fax = faxPhone,
                 Email = email,
                 Email2 = email2,
                 Email3 = email3,
+                Homepage = homePage,
+                Address2 = address2,
                 Phone2 = homePhone2,
+                Notes = notes
             };
-        }
+        }        
 
         public ContactHelper Create(ContactData contact)
         {
@@ -127,6 +160,13 @@ namespace WebAddressbookTests
             return this;
         }
 
+        // Contact view methods
+        public ContactHelper GoToDetailsForm(int index)
+        {
+            driver.FindElement(By.XPath("(//a[contains(@href,'view.php?id')])[" + (index + 1) + "]")).Click();
+            return this;
+        }
+
         //Contact creation methods
         public ContactHelper FillContactForm(ContactData contact)
         {
@@ -135,10 +175,6 @@ namespace WebAddressbookTests
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
             Type(By.Name("nickname"), contact.Nickname);
-
-            // Photo
-            //Type(By.Name("photo"), contact.Photo);
-            //driver.FindElement(By.Name("delete_photo")).Click();
 
             // Job
             Type(By.Name("title"), contact.Title);
@@ -160,19 +196,6 @@ namespace WebAddressbookTests
 
             // Internet
             Type(By.Name("homepage"), contact.Homepage);
-
-            // Birthday
-            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
-            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
-            Type(By.Name("byear"), contact.Byear);
-
-            // Anniversary
-            new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Aday);
-            new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Amonth);
-            Type(By.Name("ayear"), contact.Ayear);
-
-            // Contact group
-            //new SelectElement(driver.FindElement(By.Name("new_group"))).SelectByText(contact.New_group);
 
             // Secondary
             Type(By.Name("address2"), contact.Address2);
@@ -240,7 +263,6 @@ namespace WebAddressbookTests
             ContactData contact = new ContactData("Vasilisa", "Smirnova");
             contact.Middlename = "Sergeevna";
             contact.Nickname = "Lissa Rider";
-            //contact.Photo = "C:\\Users\vsmirnova\\Desktop\\fb36mdIniM8.jpg";
             contact.Title = "QA Engineer";
             contact.Company = "ABS";
             contact.Address = "Moscow, Lokomotivny Proezd";
@@ -251,14 +273,7 @@ namespace WebAddressbookTests
             contact.Email = "lissarider@gmail.com";
             contact.Email2 = "lisaniel.lisaniel@gmail.com";
             contact.Email3 = "lisanie@mail.ru";
-            contact.Homepage = "https://vk.com/lissarider";
-            contact.Bday = "3";
-            contact.Bmonth = "January";
-            contact.Byear = "1986";
-            contact.Aday = "3";
-            contact.Amonth = "January";
-            contact.Ayear = "2036";
-            //contact.New_group = "[none]";
+            contact.Homepage = "vk.com/lissarider";
             contact.Address2 = "Moscow, Chertanovskay street";
             contact.Phone2 = "8965444-444-4";
             contact.Notes = "Smth about me";
