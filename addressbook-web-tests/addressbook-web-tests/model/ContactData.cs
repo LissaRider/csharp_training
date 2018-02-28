@@ -103,16 +103,17 @@ namespace WebAddressbookTests
                 allPhones = value;
             }
         }
-        private string CleanUpPhones(string phone)
+
+        public string CleanUpPhones(string phone)
          {
              if (phone == null || phone == "")
              {
                  return "";
              }
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n"; ;
          }  
   
-         private string CleanUpEmails(string email)
+         public string CleanUpEmails(string email)
          {
              if (email == null || email == "")
              {
@@ -129,7 +130,7 @@ namespace WebAddressbookTests
 
         public override int GetHashCode()
         {
-            return (Firstname + Lastname).GetHashCode();
+            return (Firstname + " " + Lastname).GetHashCode();
         }
         
         public bool Equals(ContactData other)
@@ -147,7 +148,7 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "firstname=" + Firstname + ", " + "lastname=" + Lastname;
+            return Firstname + " " + Lastname;
         }
 
         public int CompareTo(ContactData other)
@@ -156,7 +157,7 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            return (Firstname + Lastname).CompareTo(other.Firstname + other.Lastname);
+            return (Firstname + " " + Lastname).CompareTo(other.Firstname + " " + other.Lastname);
         }
     }
 }

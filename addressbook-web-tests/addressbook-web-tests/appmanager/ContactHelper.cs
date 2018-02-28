@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         {
         }
 
-        internal ContactData GetContactInformationFromTable(int index)
+        public ContactData GetContactInformationFromTable(int index)
         {
             manager.Navigator.GoToHomePage();
 
@@ -25,9 +25,9 @@ namespace WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
-            string allPhones = cells[5].Text;
             string allEmails = cells[4].Text;
-
+            string allPhones = cells[5].Text;
+            
             return new ContactData(firstName, lastName)
 
             {
@@ -37,11 +37,11 @@ namespace WebAddressbookTests
             };
         }
 
-        internal ContactData GetContactInformationFromEditForm(int index)
+        public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
-
             InitContactModification(0);
+
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
 
@@ -85,7 +85,7 @@ namespace WebAddressbookTests
             return driver.FindElements(By.CssSelector("[name=entry]")).Count;
         }
 
-        private List<ContactData> contactCache = null;
+        public List<ContactData> contactCache = null;
 
         public List<ContactData> GetContactsList()
         {
