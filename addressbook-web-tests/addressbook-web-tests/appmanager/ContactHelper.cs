@@ -130,7 +130,9 @@ namespace WebAddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name=entry]"));
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(element.FindElement(By.XPath(".//td[3]")).Text, element.FindElement(By.XPath(".//td[2]")).Text));
+                    contactCache.Add(new ContactData(
+                        element.FindElement(By.XPath(".//td[3]")).Text,
+                        element.FindElement(By.XPath(".//td[2]")).Text));
                 }
             }
 
@@ -253,32 +255,15 @@ namespace WebAddressbookTests
         }
 
         // Verification
-        public void VerifyContactPresence()
+        public ContactHelper VerifyContactPresence()
         {
-            if (IsElementPresent(By.Name("entry")))
+            manager.Navigator.GoToHomePage();
+            if (!IsElementPresent(By.Name("entry")))
             {
-                return;
+                ContactData contact = new ContactData("Vasilisa", "Smirnova");
+                Create(contact);
             }
-
-            ContactData contact = new ContactData("Vasilisa", "Smirnova");
-            contact.Middlename = "Sergeevna";
-            contact.Nickname = "Lissa Rider";
-            contact.Title = "QA Engineer";
-            contact.Company = "ABS";
-            contact.Address = "Moscow, Lokomotivny Proezd";
-            contact.Home = "8 (495) 111-11-11";
-            contact.Mobile = "+7(910)4923238";
-            contact.Work = "84993333333";
-            contact.Fax = "8-499-333-33-34";
-            contact.Email = "lissarider@gmail.com";
-            contact.Email2 = "lisaniel.lisaniel@gmail.com";
-            contact.Email3 = "lisanie@mail.ru";
-            contact.Homepage = "vk.com/lissarider";
-            contact.Address2 = "Moscow, Chertanovskay street";
-            contact.Phone2 = "8965444-444-4";
-            contact.Notes = "Smth about me";
-
-            Create(contact);
+            return this;
         }
 
         public int GetNumberOfSearchResults()

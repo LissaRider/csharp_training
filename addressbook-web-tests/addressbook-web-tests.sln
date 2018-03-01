@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "addressbook-web-tests", "addressbook-web-tests\addressbook-web-tests.csproj", "{BC05C251-AA74-45A1-B5BF-F322CBE41974}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "addressbook-test-data-generators", "addressbook-test-data-generators\addressbook-test-data-generators.csproj", "{31B4A22D-CC93-4C64-8053-C6AC9835203A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC05C251-AA74-45A1-B5BF-F322CBE41974} = {BC05C251-AA74-45A1-B5BF-F322CBE41974}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +20,15 @@ Global
 		{BC05C251-AA74-45A1-B5BF-F322CBE41974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC05C251-AA74-45A1-B5BF-F322CBE41974}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC05C251-AA74-45A1-B5BF-F322CBE41974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B4A22D-CC93-4C64-8053-C6AC9835203A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B4A22D-CC93-4C64-8053-C6AC9835203A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B4A22D-CC93-4C64-8053-C6AC9835203A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B4A22D-CC93-4C64-8053-C6AC9835203A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E097928A-6091-4EBB-8672-6442D673A090}
 	EndGlobalSection
 EndGlobal

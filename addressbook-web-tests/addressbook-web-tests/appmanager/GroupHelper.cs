@@ -131,18 +131,16 @@ namespace WebAddressbookTests
         }
 
         // Verification
-        public void VerifyGroupPresence()
+        public GroupHelper VerifyGroupPresence()
         {
-            if (IsElementPresent(By.XPath("//span[@class='group']")))
+            manager.Navigator.GoToGroupsPage();
+
+            if (!IsElementPresent(By.XPath("//span[@class='group']")))
             {
-                return;
+                GroupData group = new GroupData("Employees");
+                Create(group);
             }
-
-            GroupData group = new GroupData("Employees");
-            group.Header = "Employees";
-            group.Footer = "ABS";
-
-            Create(group);
+            return this;            
         }
     }
 }
