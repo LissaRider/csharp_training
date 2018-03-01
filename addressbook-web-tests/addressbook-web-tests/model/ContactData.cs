@@ -242,7 +242,6 @@ namespace WebAddressbookTests
             return "P: " + Phone2;
         }
 
-
         public override int GetHashCode()
         {
             return (Firstname + " " + Lastname).GetHashCode();
@@ -263,7 +262,24 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return Firstname + " " + Lastname;
+            return "firstname = " + Firstname
+                + "\nlastname = " + Lastname
+                + "\nmiddlename = " + Middlename
+                + "\nnickname = " + Nickname 
+                + "\ntitle = " + Title
+                + "\ncompany = " + Company
+                + "\naddress = " + Address
+                + "\nhomePhone = " + Home
+                + "\nmobilePhone = " + Mobile
+                + "\nworkPhone = " + Work
+                + "\nfax = " + Fax
+                + "\nemail = " + Email
+                + "\nemail2 = " + Email2
+                + "\nemail3 = " + Email3
+                + "\nhomepage = " + Homepage
+                + "\naddress2 = " + Address2
+                + "\nphone2 = " + Phone2
+                + "\nnotes = " + Notes;
         }
 
         public int CompareTo(ContactData other)
