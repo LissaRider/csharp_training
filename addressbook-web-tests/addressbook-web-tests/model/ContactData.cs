@@ -4,13 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
+        [XmlIgnore]
+        [JsonIgnore]
         public string allPhones;
+        [XmlIgnore]
+        [JsonIgnore]
         public string allEmails;
+        [XmlIgnore]
+        [JsonIgnore]
         public string allDetails;
 
         public ContactData()
@@ -59,8 +68,12 @@ namespace WebAddressbookTests
 
         public string Notes { get; set; }
 
+        [XmlIgnore]
+        [JsonIgnore]
         public string Id { get; set; }
 
+        [XmlIgnore]
+        [JsonIgnore]
         public string AllEmails
         {
             get
@@ -80,6 +93,8 @@ namespace WebAddressbookTests
             }
         }
 
+        [XmlIgnore]
+        [JsonIgnore]
         public string AllPhones
         {
             get
@@ -99,6 +114,8 @@ namespace WebAddressbookTests
             }
         }
 
+        [XmlIgnore]
+        [JsonIgnore]
         public string AllDetails
         {
             get
