@@ -13,6 +13,10 @@ namespace WebAddressbookTests
         public string allEmails;
         public string allDetails;
 
+        public ContactData()
+        {
+        }
+
         public ContactData(string firstname, string lastname)
         {
             Firstname = firstname;
@@ -105,7 +109,8 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (EndStringInsert(EndStringInsert(ContactDetailsList(Firstname, Middlename, Lastname, Nickname, Title, Company, Address)))
+                    return (EndStringInsert(EndStringInsert(ContactDetailsList(
+                        Firstname, Middlename, Lastname, Nickname, Title, Company, Address)))
                         + EndStringInsert(EndStringInsert(GetTelephoneList(Home, Mobile, Work, Fax)))
                         + EndStringInsert(EndStringInsert(GetEmailList(Email, Email2, Email3, Homepage)))
                         + StartStringInsert(Address2)
@@ -169,9 +174,20 @@ namespace WebAddressbookTests
         }
 
         // Glue the lines together for fullname, job and address info as on the details form
-        public string ContactDetailsList(string firstname, string middlename, string lastname, string nickname, string title, string company, string address)
+        public string ContactDetailsList(
+                  string firstname, 
+                  string middlename,
+                  string lastname, 
+                  string nickname, 
+                  string title, 
+                  string company, 
+                  string address)
         {
-            return EndStringInsert(GetFullName(firstname, middlename, lastname)) + EndStringInsert(nickname) + EndStringInsert(title) + EndStringInsert(company) + EndStringInsert(address).Trim();
+            return (EndStringInsert(GetFullName(firstname, middlename, lastname))
+                + EndStringInsert(nickname)
+                + EndStringInsert(title)
+                + EndStringInsert(company)
+                + EndStringInsert(address)).Trim();
         }
 
         // Glue the lines together for telephone list as on the details form

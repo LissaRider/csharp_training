@@ -15,7 +15,6 @@ namespace WebAddressbookTests
         public void SetupApplicationManager()
         {
             app = ApplicationManager.GetInstance();
-
         }
 
         public static Random rnd = new Random();
