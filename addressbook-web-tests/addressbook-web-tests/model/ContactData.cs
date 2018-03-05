@@ -7,9 +7,11 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         [XmlIgnore]
@@ -32,8 +34,15 @@ namespace WebAddressbookTests
             Lastname = lastname;
         }
 
+        [Column(Name = "id"), PrimaryKey]
+        [XmlIgnore]
+        [JsonIgnore]
+        public string Id { get; set; }
+
+        [Column(Name = "firstname")]
         public string Firstname { get; set; }
 
+        [Column(Name = "lastname")]
         public string Lastname { get; set; }
 
         public string Middlename { get; set; }
@@ -68,9 +77,8 @@ namespace WebAddressbookTests
 
         public string Notes { get; set; }
 
-        [XmlIgnore]
-        [JsonIgnore]
-        public string Id { get; set; }
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
 
         [XmlIgnore]
         [JsonIgnore]
@@ -138,6 +146,14 @@ namespace WebAddressbookTests
             set
             {
                 allDetails = value;
+            }
+        }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
             }
         }
 
