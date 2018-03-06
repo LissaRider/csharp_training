@@ -78,6 +78,7 @@ namespace WebAddressbookTests
             }
             wbook.Close();
             app.Visible = false;
+            app.Quit();
             return groups;
         }
 
@@ -135,7 +136,6 @@ namespace WebAddressbookTests
         }
 
         [Test]
-
         public void TestDBConnectivity1()
         {
             foreach(ContactData contact in GroupData.GetAll()[0].GetContacts());
@@ -145,7 +145,6 @@ namespace WebAddressbookTests
         }
 
         [Test]
-
         public void TestDBConnectivity2()
         {
             foreach (ContactData contact in ContactData.GetAll())
