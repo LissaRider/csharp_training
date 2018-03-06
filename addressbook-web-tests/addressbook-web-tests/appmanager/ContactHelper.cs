@@ -37,10 +37,22 @@ namespace WebAddressbookTests
             };
         }
 
-        internal void AddContactToGroup(ContactData contact, GroupData group)
+        public ContactHelper Remove(ContactData contact)
         {
             manager.Navigator.GoToHomePage();
-            ClearGroupfilter();
+
+            SelectContact(contact.Id);
+            InitContactRemoval();
+            SubmitContactRemoval();
+
+            manager.Navigator.GoToHomePage();
+            return this;
+        }
+
+        public void AddContactToGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
             SelectContact(contact.Id);
             SelectgroupToAdd(group.Name);
             CommitAddingContactToGroup();
@@ -48,7 +60,25 @@ namespace WebAddressbookTests
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
-        public void ClearGroupfilter()
+        public ContactHelper Modify(ContactData toBeModified, ContactData newData)
+        {
+            manager.Navigator.GoToHomePage();
+
+            InitContactModification(toBeModified.Id);
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToHomePage();
+
+            return this;
+        }
+
+        public ContactHelper InitContactModification(string id)
+        {
+            driver.FindElement(By.XPath(String.Format("//a[@href='edit.php?id={0}']", id))).Click();
+            return this;
+        }
+
+        public void ClearGroupFilter()
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }

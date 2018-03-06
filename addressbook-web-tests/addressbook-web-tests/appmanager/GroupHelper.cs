@@ -31,12 +31,12 @@ namespace WebAddressbookTests
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 
-        public GroupHelper Modify(GroupData group, GroupData newData)
+        public GroupHelper Modify(GroupData toBeModified, GroupData newData)
         {
             {
                 manager.Navigator.GoToGroupsPage();
 
-                SelectGroup(group.Id);
+                SelectGroup(toBeModified.Id);
                 InitGroupModification();
                 FillGroupForm(newData);
                 SubmitGroupModification();

@@ -14,7 +14,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : GroupTestBase
+    public class GroupCreationTests : ContactTestBase
     {
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
@@ -124,7 +124,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TestDBConnectivity0()
+        public void TestDBConnectivity_G0()
         {
             DateTime start = DateTime.Now;
             List<GroupData> fromUi = app.Groups.GetGroupsList();
@@ -138,7 +138,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TestDBConnectivity1()
+        public void TestDBConnectivity_G1()
         {
             foreach(ContactData contact in GroupData.GetAll()[0].GetContacts());
             {
@@ -147,7 +147,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TestDBConnectivity2()
+        public void TestDBConnectivity_G2()
         {
             foreach (ContactData contact in ContactData.GetAll())
             {
