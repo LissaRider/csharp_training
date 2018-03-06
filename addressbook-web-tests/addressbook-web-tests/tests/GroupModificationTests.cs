@@ -20,21 +20,23 @@ namespace WebAddressbookTests
 
             app.Groups.VerifyGroupPresence();
 
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
-            GroupData oldData = oldGroups[0];
+            //List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
+            GroupData toBeModified = oldGroups[0];
 
-            app.Groups.Modify(0, newData);
+            app.Groups.Modify(toBeModified, newData);
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            //List<GroupData> newGroups = app.Groups.GetGroupsList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
             foreach (GroupData group in newGroups)
             {
-                if (group.Id == oldData.Id)
+                if (group.Id == toBeModified.Id)
                 {
                     Assert.AreEqual(newData.Name, group.Name);
                 }

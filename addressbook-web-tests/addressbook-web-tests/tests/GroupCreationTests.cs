@@ -86,13 +86,15 @@ namespace WebAddressbookTests
 
         public void GroupCreationTest(GroupData group)
         {           
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            //List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             app.Groups.Create(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
 
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            //List<GroupData> newGroups = app.Groups.GetGroupsList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();

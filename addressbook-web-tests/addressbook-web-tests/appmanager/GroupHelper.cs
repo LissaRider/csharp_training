@@ -31,6 +31,21 @@ namespace WebAddressbookTests
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 
+        public GroupHelper Modify(GroupData group, GroupData newData)
+        {
+            {
+                manager.Navigator.GoToGroupsPage();
+
+                SelectGroup(group.Id);
+                InitGroupModification();
+                FillGroupForm(newData);
+                SubmitGroupModification();
+                ReturnToGroupsPage();
+
+                return this;
+            }
+        }
+
         private List<GroupData> groupCache = null;
 
         public List<GroupData> GetGroupsList()
