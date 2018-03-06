@@ -37,6 +37,29 @@ namespace WebAddressbookTests
             };
         }
 
+        public ContactHelper RemoveContactFromGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupToRemove(group.Name);
+            SelectContact(contact.Id);
+            SubmitRemovingContactFromGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+            return this;
+        }
+
+        public ContactHelper SubmitRemovingContactFromGroup()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectGroupToRemove(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
+            return this;
+        }
+
         public ContactHelper Remove(ContactData contact)
         {
             manager.Navigator.GoToHomePage();
@@ -49,7 +72,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public void AddContactToGroup(ContactData contact, GroupData group)
+        public ContactHelper AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
             ClearGroupFilter();
@@ -58,6 +81,7 @@ namespace WebAddressbookTests
             CommitAddingContactToGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+            return this;
         }
 
         public ContactHelper Modify(ContactData toBeModified, ContactData newData)
@@ -78,9 +102,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public void ClearGroupFilter()
+        public ContactHelper ClearGroupFilter()
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+            return this;
         }
 
         public ContactData GetContactInformationFromDetailsForm(int index)
@@ -209,19 +234,22 @@ namespace WebAddressbookTests
         }
 
         // Methods for adding a contact to the group
-        public void CommitAddingContactToGroup()
+        public ContactHelper CommitAddingContactToGroup()
         {
             driver.FindElement(By.Name("add")).Click();
+            return this;
         }
 
-        public void SelectgroupToAdd(string name)
+        public ContactHelper SelectgroupToAdd(string name)
         {
             new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+            return this;
         }
 
-        public void SelectContact(string contactId)
+        public ContactHelper SelectContact(string contactId)
         {
             driver.FindElement(By.Id(contactId)).Click();
+            return this;
         }
 
         // Contact view methods
