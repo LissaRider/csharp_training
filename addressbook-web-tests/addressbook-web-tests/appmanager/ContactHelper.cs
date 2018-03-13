@@ -356,6 +356,28 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper VerifyContactInGroupPresence(GroupData group)
+        {
+            if (ContactData.GetAll().Except(group.GetContacts()).Count() == 0)
+            {
+                ContactData contact = group.GetContacts().First();
+
+                RemoveContactFromGroup(contact, group);
+            }
+            return this;
+        }
+
+        public ContactHelper VerifyContactInGroupAbsence(GroupData group)
+        {
+            if (group.GetContacts().Count() == 0)
+            {
+                ContactData contact = ContactData.GetAll().First();
+
+                AddContactToGroup(contact, group);
+            }
+            return this;
+        }
+
         public int GetNumberOfSearchResults()
         {
             manager.Navigator.GoToHomePage();
