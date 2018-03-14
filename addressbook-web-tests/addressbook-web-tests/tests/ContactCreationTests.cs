@@ -124,7 +124,7 @@ namespace WebAddressbookTests
             return contacts;
         }
 
-        [Test, TestCaseSource("ContactDataFromExcelFile")]
+        [Test, TestCaseSource("ContactDataFromCsvFile")]
 
         public void ContactCreationTest(ContactData contact)
         {

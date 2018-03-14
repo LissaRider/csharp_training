@@ -13,7 +13,7 @@ namespace WebAddressbookTests
         [Test]
         public void TestContactInformation()
         {
-            app.Contacts.VerifyContactPresence();
+            app.Contacts.VerifyContactPresence();            
 
             ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
             ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
