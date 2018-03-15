@@ -19,5 +19,10 @@ namespace addressbook_tests_white
         {
             return this.Name.Equals(other.Name);
         }
+
+        public override string ToString()
+        {
+            return "name =" + Name;
+        }
     }
 }

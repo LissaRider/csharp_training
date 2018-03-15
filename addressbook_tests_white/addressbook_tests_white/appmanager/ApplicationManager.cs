@@ -7,15 +7,15 @@ using TestStack.White;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
 
+
 namespace addressbook_tests_white
-{   
+{
     public class ApplicationManager
     {
         public static string WINTITLE = "Free Address Book";
 
         private GroupHelper groupHelper;
 
-        // Запуск приложения с помощью команды Run()
         public ApplicationManager()
         {
             Application app = Application.Launch(@"C:\Program Files (x86)\GAS Softwares\Free Address Book\AddressBook.exe");
@@ -24,13 +24,12 @@ namespace addressbook_tests_white
             groupHelper = new GroupHelper(this);
         }
 
-        // Остановка приложения с помощью команды ControlClick()
+        public Window MainWindow { get; private set; }
+
         public void Stop()
         {
             MainWindow.Get<Button>("uxExitAddressButton").Click();
         }
-
-        public Window MainWindow { get; private set; }
 
         public GroupHelper Groups
         {
