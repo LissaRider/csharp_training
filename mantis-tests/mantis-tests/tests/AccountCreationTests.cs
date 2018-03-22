@@ -17,7 +17,7 @@ namespace mantis_tests
             app.Ftp.BackupFile("/config/config_inc.php");
             using (Stream localFile = File.Open("config_inc.php", FileMode.Open))
             {
-                app.Ftp.Upload("/config/config_inc.php", null);
+                app.Ftp.Upload("/config/config_inc.php", localFile);
             }
         }
 

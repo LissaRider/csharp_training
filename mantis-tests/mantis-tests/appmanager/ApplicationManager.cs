@@ -17,6 +17,9 @@ namespace mantis_tests
 
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
+        public LoginHelper Auth { get;  set; }
+        public NavigationHelper Navigator { get; set; }
+        public ProjectHelper Projects { get; set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -30,6 +33,9 @@ namespace mantis_tests
 
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
+            Auth = new LoginHelper(this);
+            Navigator = new NavigationHelper(this);
+            Projects = new ProjectHelper(this);
         }
 
         ~ApplicationManager()
