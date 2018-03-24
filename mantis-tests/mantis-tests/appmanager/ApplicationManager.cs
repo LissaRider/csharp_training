@@ -15,11 +15,11 @@ namespace mantis_tests
         protected IWebDriver driver;
         protected string baseURL;
 
-        public RegistrationHelper Registration { get; set; }
-        public FtpHelper Ftp { get; set; }
-        public LoginHelper Auth { get;  set; }
-        public NavigationHelper Navigator { get; set; }
-        public ProjectHelper Projects { get; set; }
+        public RegistrationHelper Registration { get; private set; }
+        public FtpHelper Ftp { get; private set; }
+        public ProjectManagementHelper Projects { get; private set; }
+        public LoginHelper Auth { get; private set; }
+        public NavigationHalper Navigator { get; private set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -33,9 +33,10 @@ namespace mantis_tests
 
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
+            Projects = new ProjectManagementHelper(this);
             Auth = new LoginHelper(this);
-            Navigator = new NavigationHelper(this);
-            Projects = new ProjectHelper(this);
+            Navigator = new NavigationHalper(this);
+
         }
 
         ~ApplicationManager()
@@ -55,7 +56,7 @@ namespace mantis_tests
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.driver.Url = "http://localhost/mantisbt-2.2.0/login_page.php";
+                newInstance.driver.Url = "http://localhost/mantisbt-2.12.0/login_page.php";
                 app.Value = newInstance;
             }
             return app.Value;

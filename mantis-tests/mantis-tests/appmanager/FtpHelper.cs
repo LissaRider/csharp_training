@@ -43,6 +43,7 @@ namespace mantis_tests
                 client.DeleteFile(path);
             }
             client.Rename(backupPath, path);
+
         }
 
         public void Upload(String path, Stream localFile)
