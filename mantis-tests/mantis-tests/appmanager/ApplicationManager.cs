@@ -20,6 +20,7 @@ namespace mantis_tests
         public ProjectManagementHelper Projects { get; private set; }
         public LoginHelper Auth { get; private set; }
         public NavigationHalper Navigator { get; private set; }
+        public JamesHelper James { get; set; }
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -36,7 +37,7 @@ namespace mantis_tests
             Projects = new ProjectManagementHelper(this);
             Auth = new LoginHelper(this);
             Navigator = new NavigationHalper(this, baseURL);
-
+            James = new JamesHelper(this);
         }
 
         ~ApplicationManager()
