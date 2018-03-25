@@ -29,13 +29,13 @@ namespace mantis_tests
             options.UseLegacyImplementation = true;
             options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
             driver = new FirefoxDriver(options);
-            baseURL = "http://localhost/";
+            baseURL = "http://localhost/mantisbt-2.12.0";
 
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             Projects = new ProjectManagementHelper(this);
             Auth = new LoginHelper(this);
-            Navigator = new NavigationHalper(this);
+            Navigator = new NavigationHalper(this, baseURL);
 
         }
 

@@ -25,9 +25,9 @@ namespace mantis_tests
             }
             manager.Navigator.OpenMainPage();
             Type(By.Id("username"), account.Name);
-            driver.FindElement(By.XPath(".//form[@id='login-form']/fieldset/input[contains(@class,'btn')]")).Click();
+            driver.FindElement(By.XPath("//form[@id='login-form']/fieldset/input[contains(@class,'btn')]")).Click();
             Type(By.Id("password"), account.Password);
-            driver.FindElement(By.CssSelector(".//form[@id='login-form']/fieldset/input[contains(@class,'btn')]")).Click();
+            driver.FindElement(By.XPath("//form[@id='login-form']/fieldset/input[contains(@class,'btn')]")).Click();
         }
 
         public void Logout()

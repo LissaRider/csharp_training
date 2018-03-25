@@ -11,31 +11,46 @@ namespace mantis_tests
 
     public class NavigationHalper : HelperBase
     {
-        public NavigationHalper(ApplicationManager manager) : base(manager) { }
+        private string baseURL;
+
+        public NavigationHalper(ApplicationManager manager, string baseURL) : base(manager)
+        {
+            this.baseURL = baseURL;
+        }
 
         public void OpenMainPage()
         {
-            if (driver.Url != "http://localhost/mantisbt-2.12.0/login_page.php")
+            if (driver.Url == baseURL + "/login_page.php")
             {
-                manager.Driver.Url = "http://localhost/mantisbt-2.12.0/login_page.php";
+                return;
             }
-        }
-
-        public void OpenManageOverviewPage()
-        {
-            if (!IsElementPresent(By.XPath("//div[@id='sidebar']/ul/li[@class='active']/a[contains(@href,'manage_overview_page.php')]")))
-            {
-                driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[@class='active']/a[contains(@href,'manage_overview_page.php')]")).Click();
-            }
+            driver.Navigate().GoToUrl(baseURL + "/login_page.php");
         }
 
         public void GoToManageProjPage()
         {
-            OpenManageOverviewPage();
-            if (!IsElementPresent(By.XPath("//div[@id='main-container']//li[@class='active']/a[contains(@href,'manage_proj_page.php')]")))
+            if (driver.Url == baseURL + "/manage_proj_page.php"
+                && IsElementPresent(By.XPath("//form[@action='manage_proj_create_page.php']/fieldset/button")))
             {
-                driver.FindElement(By.XPath("//div[@id='main-container']//li[@class='active']/a[contains(@href,'manage_proj_page.php')]")).Click();
+                return;
             }
+            OpenManageOverviewPage();
+            OpenManageProjPage();
+            //driver.Manage().Timeouts().ImplicitWait = new TimeSpan(40);
+        }
+
+        public void OpenManageOverviewPage()
+        {
+            driver.FindElement(
+                By.XPath("//div[@id='sidebar']//a[contains(@href,'/manage_overview_page.php')]"))
+                .Click();
+        }
+
+        public void OpenManageProjPage()
+        {
+            driver.FindElement(
+                By.XPath("//div[@id='main-container']//a[contains(@href,'/manage_proj_page.php')]"))
+                .Click();
         }
     }
 }

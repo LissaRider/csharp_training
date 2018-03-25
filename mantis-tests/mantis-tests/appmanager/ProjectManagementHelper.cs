@@ -13,7 +13,7 @@ namespace mantis_tests
     {
         public ProjectManagementHelper(ApplicationManager manager) : base(manager)
         {
-        }        
+        }
 
         public void Create(ProjectData project)
         {
@@ -47,7 +47,7 @@ namespace mantis_tests
         {
             driver.FindElement(By.XPath("//form[@id='manage-project-create-form']//div[contains(@class,'widget-toolbox')]/input")).Click();
             driver.FindElement(By.XPath("//a[contains(@href, 'manage_proj_page.php')]")).Click();
-        }        
+        }
 
         // Project removal methods
         public void OpenManageProjEditPage(String name)
@@ -63,21 +63,21 @@ namespace mantis_tests
         public void SubmitProjectRemoval()
         {
             driver.FindElement(By.XPath("//form[@class='center']/input[contains(@class,'btn')]")).Click();
-        }        
+        }
 
         // Verification
         public List<ProjectData> GetProjectsList()
         {
             List<ProjectData> list = new List<ProjectData>();
             manager.Navigator.GoToManageProjPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table"))[0]
-                .FindElements(By.XPath("//tbody/tr"));
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector(".table"))[0]
+                .FindElements(By.CssSelector("tbody>tr"));
             foreach (IWebElement element in elements)
             {
                 list.Add(new ProjectData()
                 {
-                    Name = element.FindElements(By.XPath("//td"))[0].Text,
-                    Description = element.FindElements(By.XPath("//td"))[4].Text
+                    Name = element.FindElements(By.CssSelector("td"))[0].Text,
+                    Description = element.FindElements(By.CssSelector("td"))[4].Text
                 });
             }
             return list;
@@ -86,9 +86,7 @@ namespace mantis_tests
         public int GetProjectCount()
         {
             manager.Navigator.GoToManageProjPage();
-            return driver.FindElements(By.XPath("//table"))[0]
-                .FindElements(By.XPath("//tbody/tr"))
-                .Count();
+            return driver.FindElements(By.CssSelector(".table"))[0].FindElements(By.CssSelector("tbody>tr")).Count();
         }
 
         public void VerifyProjectPresence()
@@ -109,8 +107,7 @@ namespace mantis_tests
         public void VerifySameProjectPresence(ProjectData project)
         {
             manager.Navigator.GoToManageProjPage();
-
-            if (IsElementPresent(By.XPath("//a[contains(text(),'" + project.Name + "') and contains(@href,'manage_proj_edit_page.php?project_id')]")))
+            if (IsElementPresent(By.XPath("//table[1]/tbody/tr/td[1]/a[.='"+ project.Name + "']")))
             {
                 Remove(project);
             }
