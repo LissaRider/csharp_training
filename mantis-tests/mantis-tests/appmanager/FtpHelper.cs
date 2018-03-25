@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net.FtpClient;
 
-
 namespace mantis_tests
 {
     public class FtpHelper : HelperBase
@@ -43,7 +42,6 @@ namespace mantis_tests
                 client.DeleteFile(path);
             }
             client.Rename(backupPath, path);
-
         }
 
         public void Upload(String path, Stream localFile)

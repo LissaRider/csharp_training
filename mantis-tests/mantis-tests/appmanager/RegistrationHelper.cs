@@ -35,7 +35,7 @@ namespace mantis_tests
         {
             driver.FindElement(By.Id("username")).SendKeys(account.Name);
             driver.FindElement(By.Id("email-field")).SendKeys(account.Email);
-            driver.FindElement(By.Id("email-field")).SendKeys(account.Email);
+            driver.FindElement(By.Id("username")).SendKeys(account.Name);
         }
     }
 }
