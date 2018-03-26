@@ -1,42 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 namespace mantis_tests
 {
-    public class NavigationHelper : HelperBase
+
+    public class NavigationHalper : HelperBase
     {
-        public NavigationHelper(ApplicationManager manager) : base(manager)
-        {
-        }
+        private string baseURL;
 
-        public void OpenManageOverviewPage()
+        public NavigationHalper(ApplicationManager manager, string baseURL) : base(manager)
         {
-            if (!IsElementPresent(By.XPath("//div[@id='sidebar']/ul/li[@class='active']/a" + "/span[contains(text(),'управление')]")))
-            {
-                driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li/a" + "/span[contains(text(),'управление')]")).Click();
-            }
-        }
-
-        public void GoToManageProjPage()
-        {
-            if (!IsElementPresent(By.LinkText("Управление проектами")))
-            {
-                driver.FindElement(By.LinkText("Управление проектами")).Click();
-            }
+            this.baseURL = baseURL;
         }
 
         public void OpenMainPage()
         {
-            if (driver.Url != "http://localhost/mantisbt-2.2.0/login_page.php")
+            if (driver.Url == baseURL + "/login_page.php")
             {
-                manager.Driver.Url = "http://localhost/mantisbt-2.2.0/login_page.php";
+                return;
             }
+            driver.Navigate().GoToUrl(baseURL + "/login_page.php");
+        } 
+        
+        public void GoToManageProjPage()
+        {
+            if (driver.Url == baseURL + "/manage_proj_page.php"
+                && IsElementPresent(By.XPath("//form[@action='manage_proj_create_page.php']/fieldset/button")))
+            {
+                return;
+            }
+            OpenManageOverviewPage();
+            OpenManageProjPage();
+            //driver.Manage().Timeouts().ImplicitWait = new TimeSpan(40);
+        }
+
+        public void OpenManageOverviewPage()
+        {
+            driver.FindElement(
+                By.XPath("//div[@id='sidebar']//a[contains(@href,'/manage_overview_page.php')]"))
+                .Click();
+        }
+
+        public void OpenManageProjPage()
+        {
+            driver.FindElement(
+                By.XPath("//div[@id='main-container']//a[contains(@href,'/manage_proj_page.php')]"))
+                .Click();
         }
     }
 }

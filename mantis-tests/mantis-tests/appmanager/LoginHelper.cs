@@ -11,9 +11,7 @@ namespace mantis_tests
 {
     public class LoginHelper : HelperBase
     {
-        public LoginHelper(ApplicationManager manager) : base(manager)
-        {
-        }
+        public LoginHelper(ApplicationManager manager) : base(manager) { }
 
         public void Login(AccountData account)
         {
@@ -27,23 +25,23 @@ namespace mantis_tests
             }
             manager.Navigator.OpenMainPage();
             Type(By.Id("username"), account.Name);
-            driver.FindElement(By.CssSelector(".btn-success")).Click();
+            driver.FindElement(By.XPath("//form[@id='login-form']/fieldset/input[contains(@class,'btn')]")).Click();
             Type(By.Id("password"), account.Password);
-            driver.FindElement(By.CssSelector(".btn-success")).Click();
+            driver.FindElement(By.XPath("//form[@id='login-form']/fieldset/input[contains(@class,'btn')]")).Click();
         }
 
         public void Logout()
         {
             if (IsLoggedIn())
             {
-                driver.FindElement(By.CssSelector("span.user-info")).Click();
-                driver.FindElement(By.LinkText("выход")).Click();
+                driver.FindElement(By.XPath("//span[@class='user-info']")).Click();
+                driver.FindElement(By.XPath("//a[contains(@href,'/logout_page.php')]")).Click();
             }
         }
 
         public bool IsLoggedIn()
         {
-            return IsElementPresent(By.XPath("//a[contains(@href,'/logout_page.php')]"));
+            return IsElementPresent(By.XPath("//a[contains(@href,'logout_page.php')]"));
         }
 
         public bool IsLoggedIn(AccountData account)
@@ -54,7 +52,7 @@ namespace mantis_tests
 
         public string GetLoggetUserName()
         {
-            String text = driver.FindElement(By.XPath("//a[contains(@href,'/logout_page.php')]")).Text;
+            String text = driver.FindElement(By.XPath("//a[contains(@href,'logout_page.php')]")).Text;
             return text;
         }
     }
