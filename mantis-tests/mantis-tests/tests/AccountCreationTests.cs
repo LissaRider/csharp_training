@@ -44,11 +44,6 @@ namespace mantis_tests
             app.Registration.Register(account);
         }
 
-        app.James.Delete(account);
-        app.James.Delete(account);
-
-        app.Registration.Register(account);
-
         [TestFixtureTearDown]
         public void restoreConfig()
         {

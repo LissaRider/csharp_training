@@ -48,7 +48,6 @@ namespace mantis_tests
         {
             return IsLoggedIn()
                 && GetLoggetUserName() == account.Name;
-
         }
 
         public string GetLoggetUserName()
