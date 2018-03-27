@@ -80,7 +80,6 @@ namespace mantis_tests
         }
 
         // Verification
-        /*
         public List<ProjectData> GetProjectsList()
         {
             List<ProjectData> list = new List<ProjectData>();
@@ -97,8 +96,7 @@ namespace mantis_tests
             }
             return list;
         }
-        */
-
+        
         public List<ProjectData> GetProjectsList(AccountData account)
         {
             List<ProjectData> list = new List<ProjectData>();
@@ -121,8 +119,7 @@ namespace mantis_tests
             manager.Navigator.GoToManageProjPage();
             return driver.FindElements(By.CssSelector(".table"))[0].FindElements(By.CssSelector("tbody>tr")).Count();
         }
-
-        /*
+        
         public void VerifyProjectPresence(ProjectData project)
         {
             manager.Navigator.GoToManageProjPage();
@@ -131,8 +128,7 @@ namespace mantis_tests
             {
                 Create(project);
             }
-        }
-        */
+        }        
 
         public void VerifyProjectPresence(AccountData account, ProjectData project)
         {
@@ -141,8 +137,7 @@ namespace mantis_tests
                 Create(account, project);
             }
         }
-
-        /*
+        
         public void VerifySameProjectPresence(ProjectData project)
         {
             manager.Navigator.GoToManageProjPage();
@@ -150,8 +145,7 @@ namespace mantis_tests
             {
                 Remove(project);
             }
-        }
-        */
+        }        
 
         public void VerifySameProjectPresence(AccountData account, ProjectData project)
         {

@@ -13,7 +13,7 @@ namespace mantis_tests
         public APIHelper(ApplicationManager manager) : base(manager)
         {
         }
-
+        
         public void CreateNewIssue(AccountData account, ProjectData project, IssueData issueData)
         {
             Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
@@ -25,6 +25,6 @@ namespace mantis_tests
             issue.project.id = project.Id;
 
             client.mc_issue_add(account.Name, account.Password, issue);
-        }
+        }        
     }
 }

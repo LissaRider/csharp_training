@@ -36,11 +36,12 @@ namespace mantis_tests
             {
                 app.Admin.DeleteAccount(existingAccount);
             }
+
             app.James.Delete(account);
             app.James.Delete(account);
             */
 
-            app.Registration.Register(account);           
+            app.Registration.Register(account);
         }
 
         [TestFixtureTearDown]

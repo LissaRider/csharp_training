@@ -11,7 +11,7 @@ namespace mantis_tests
     public class AddNewIssueTests : TestBase
     {
         [Test]
-        public void AddNewIssue()
+        public void AddNewIssueAPITest()
         {
             AccountData account = new AccountData()
             {

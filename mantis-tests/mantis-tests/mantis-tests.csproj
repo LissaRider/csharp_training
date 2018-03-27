@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{783CF9AA-DE38-4512-9E1B-423E3A00A5BF}</ProjectGuid>
+    <ProjectGuid>{7004D6B5-C7FE-4803-8083-FF005CAF02AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>mantis_tests</RootNamespace>
@@ -100,13 +100,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="model\IssueData.cs" />
-    <Compile Include="tests\AddNewIssue.cs" />
-    <Compile Include="tests\UnitTest1.cs" />
-    <Compile Include="model\AccountData.cs" />
-    <Compile Include="model\ProjectData.cs" />
+    <Compile Include="models\AccountData.cs" />
+    <Compile Include="models\IssueData.cs" />
+    <Compile Include="models\ProjectData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tests\AccountCreationTests.cs" />
+    <Compile Include="tests\AddNewIssueTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="tests\ProjectCreationTests.cs" />
     <Compile Include="tests\ProjectRemovalTests.cs" />
@@ -157,7 +156,9 @@
     <None Include="Connected Services\Mantis\mantis_tests.Mantis.UserData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
