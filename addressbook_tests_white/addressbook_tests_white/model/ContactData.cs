@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace addressbook_tests_white
 {
-    public class GroupData : IComparable<GroupData>, IEquatable<GroupData>
+    public class ContactData : IComparable<ContactData>, IEquatable<ContactData>
     {
-        public string Name { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
 
-        public bool Equals(GroupData other)
+        public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
@@ -20,26 +22,26 @@ namespace addressbook_tests_white
             {
                 return true;
             }
-            return Name == other.Name;
+            return Firstname == other.Firstname && Lastname == other.Lastname;
         }
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return (Lastname + Firstname).GetHashCode();
         }
 
         public override string ToString()
         {
-            return "name =" + Name;
+            return Lastname + " " + Firstname;
         }
 
-        public int CompareTo(GroupData other)
+        public int CompareTo(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
                 return 1;
             }
-            return Name.CompareTo(other.Name);
+            return (Lastname + Firstname).CompareTo(other.Lastname + other.Firstname);
         }
     }
 }
