@@ -88,9 +88,8 @@ namespace addressbook_tests_white
         }
 
         public void VerifyContactPresence()
-        {
-            List<ContactData> contacts = GetContactList();
-            if (contacts.Count == 0)
+        {            
+            if (GetContactCount() == 0)
             {
                 ContactData newContact = new ContactData()
                 {
